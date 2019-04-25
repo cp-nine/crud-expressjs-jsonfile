@@ -1,9 +1,9 @@
 const CreateRouter = require('express').Router();
-import * as User from './../model/customer';
+import {insert, success, fail} from './../model/customer';
 
 CreateRouter.post('/customer', (req, res, next) => {
 
-  let response = User.insert(req.body);
+  let response = insert(req.body, success, fail);
 
   res.json(response);
 });

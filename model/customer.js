@@ -19,17 +19,20 @@ function findByUsername(username) {
     });
 }
 
-function insert(data) {
+function insert(data, resolve, reject) {
   const index = customers.findIndex((customer) => {
       return customer.id === Number(data.id)
     });
 
   if (index < 0) {
     customers.push(data);
-  } 
+    save(customers);
+    return resolve(findById(data.id));
+  } else {
+    return reject(40, "Bad request", null);
+  }
 
-  save(customers);
-  return findById(data.id);
+  
 }
 
 function update(id, data, resolve, reject) {
@@ -68,18 +71,16 @@ function update(id, data, resolve, reject) {
   
 }
 
-function hapus(id) {
-  const index = customers.findIndex((customer) => {
-    return customer.id === Number(id)
-  });
+function hapus(id, resolve, reject) {
+  const index = customers.findIndex((customer) => { return customer.id === Number(id)});
 
   if (index > 0) {
     customers.splice(index);
     save(customers);
 
-    return true;
+    return resolve(null);
   } else {
-    return false;
+    return reject(44, "Customer not found", null);
   }
 
 }
@@ -100,7 +101,7 @@ function fail(status, message, data){
 function isValid(data) {
 
   if (!data.email) {
-      return false;
+    return false;
   } else {
     return true;
   }
