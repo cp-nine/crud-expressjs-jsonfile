@@ -1,33 +1,33 @@
 class CommonResponse {
 
   constructor(status, message, data){
-    this._status = status;
-    this._message = message;
-    this._data = data;
+    this.status = status;
+    this.message = message;
+    this.data = data;
   }
   
-  set status(status){
-    this._status = status;
+  set _status(status){
+    this.status = status;
   }
 
-  get status(){
-    return Number.parseInt(this._status);
+  get _status(){
+    return Number.parseInt(this.status);
   }
 
-  set message(message){
-    this._message = message;
+  set _message(message){
+    this.message = message;
   }
 
-  get message(){
-    return this._message;
+  get _message(){
+    return this.message;
   }
 
-  set data(data){
-    this._data = data;
+  set _data(data){
+    this.data = data;
   }
 
-  get message(){
-    return this._data;
+  get _message(){
+    return this.data;
   }
 
 }
