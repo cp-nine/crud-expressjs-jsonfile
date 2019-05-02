@@ -1,26 +1,8 @@
-class ResponseModel {
+import CommonResponse from './common-response';
 
-  constructor(angka, bilangan){
-    this._angka = angka;
-    this._bilangan = bilangan;
-  }
-  
-  set angka(angka){
-    this._angka = angka;
-  }
+exports.Ok = (res, callback) => {
 
-  get angka(){
-    return Number.parseInt(this._angka);
-  }
+  let response = new CommonResponse(data);
 
-  set bilangan(bilangan){
-    this._bilangan = bilangan;
-  }
-
-  get bilangan(){
-    return this._bilangan;
-  }
-
+  res.json(response);
 }
-
-module.exports = ResponseModel;

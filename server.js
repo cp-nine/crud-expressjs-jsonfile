@@ -2,27 +2,37 @@ const express = require('express')
 const app     = express()
 const port    = 3000;
 
-// using mysql connector
-// require('./db/connector');
+const mysql = require('mysql');
+
+const con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "testdb"
+});
+
+con.connect((err)=>{
+  if (err){ console.log(err);
+   };
+  console.log("Connected!");
+
+});
+
+global.con = con;
+
+
 
 //using sequelize
 // require('./db/sequelize-connector');
 
 const bodyParser = require('body-parser');
 
-const router = require('./router/router');
-const ReadRouter = require('./router/read');
-const CreateRouter = require('./router/create');
-const UpdateRouter = require('./router/update');
-const DeleteRouter = require('./router/delete');
+// const router = require('./router/router');
+const routes = require('./router/routes');
 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use([router, ReadRouter, CreateRouter, UpdateRouter, DeleteRouter]);
-// app.use(ReadRouter);
-// app.use(CreateRouter);
-// app.use(UpdateRouter);
-// app.use(DeleteRouter);
+app.use(routes);
 
 app.listen(port, () => console.log(`Running on port ${port}!`))

@@ -1,5 +1,5 @@
 const CreateRouter = require('express').Router();
-import {insert, success, fail} from './../model/customer';
+import {insert, success, fail} from './../dao/customer';
 
 CreateRouter.post('/customer', (req, res, next) => {
 

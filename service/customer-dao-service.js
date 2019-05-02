@@ -1,5 +1,5 @@
 const fs = require('fs');
-const CommonResponse = require('./../responses/common-response');
+const CommonResponse = require('../responses/common-response');
 
 const dataUser = `${__dirname}/../db/customer.json`;
 const customers = (fs.existsSync(dataUser) ? JSON.parse(fs.readFileSync(dataUser, {encoding: 'UTF8'})) : []);
@@ -9,7 +9,13 @@ function findAll() {
 }
 
 function findById(id) {
-  return customers.find((customer)=>{return customer.id === Number(id)});
+  let cs = customers.find((customer)=>{return customer.id === Number(id)});
+  if (cs) {
+    return success(cs);
+  } else {
+    return fail(44, "Customer not found", null);
+  }
+  
 }
 
 function findByUsername(username) {

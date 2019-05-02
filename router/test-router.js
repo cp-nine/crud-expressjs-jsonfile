@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const MockResponse = require('./../functions/mocks-model');
-const check  = require('./../functions/check-number');
+const MockResponse = require('../functions/mocks-model');
+const check  = require('../functions/check-number');
 
 router.get('/hello', (req, res, next)=>{
   res.json({message: 'hello world'});
